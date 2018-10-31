@@ -1,10 +1,13 @@
 package de.adesso.facenalitybackend.rest;
 
 import de.adesso.facenalitybackend.business.QuestionnaireService;
+import de.adesso.facenalitybackend.persistence.Questionnaire;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import static org.springframework.web.bind.annotation.RequestMethod.POST;
+
+@CrossOrigin
 @RestController
 public class QuestionnaireRestController {
 
@@ -15,12 +18,13 @@ public class QuestionnaireRestController {
         this.questionnaireService = questionnaireService;
     }
 
-    public void save(Long userId,String name) {
-        questionnaireService.update(userId, name);
+    @RequestMapping("/save-questionnaire")
+    public Long save(@RequestBody Questionnaire questionnaire) {
+        return questionnaireService.saveQuestionnaire(questionnaire).getId();
     }
 
-    @RequestMapping("/greet")
+    @RequestMapping("greet")
     public String greet() {
-        return "Hey there!";
+        return "Hey there :p!";
     }
 }

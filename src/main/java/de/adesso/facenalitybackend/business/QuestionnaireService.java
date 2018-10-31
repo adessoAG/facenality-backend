@@ -17,10 +17,7 @@ public class QuestionnaireService {
         this.questionnaireRepository = questionnaireRepository;
     }
 
-
-    public void update(Long userId, String name) {
-        Optional<Questionnaire> questionnaireOptional = questionnaireRepository.findById(userId);
-
-        questionnaireOptional.ifPresent(questionnaire -> questionnaire.setName(name));
+    public Questionnaire saveQuestionnaire(Questionnaire questionnaire) {
+        return questionnaireRepository.save(questionnaire);
     }
 }

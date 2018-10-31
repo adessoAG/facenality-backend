@@ -7,5 +7,5 @@ import java.util.Optional;
 
 public interface QuestionnaireRepository extends JpaRepository<Questionnaire, Long> {
 
-    Optional<List<Questionnaire>> findByName(String name);
+    Optional<List<Questionnaire>> findByEmail(String email);
 }
