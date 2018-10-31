@@ -1,49 +1,54 @@
 package de.adesso.facenalitybackend.persistence;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import javassist.bytecode.ByteArray;
+import lombok.Getter;
+import lombok.Setter;
+
+import javax.persistence.*;
+import java.awt.*;
+import java.sql.Blob;
+import java.util.Base64;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 
 @Entity
+@Getter
+@Setter
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Questionnaire {
 
     @Id
     @GeneratedValue
     private Long id;
+
     private String email;
+
+    @Lob
+    @JsonFormat(with = JsonFormat.Feature.ACCEPT_SINGLE_VALUE_AS_ARRAY)
+    @ElementCollection
+    private List<String> photos;
+
+    @ElementCollection
+    @JsonDeserialize(using = StringMapDeserializer.class)
+    private Map<String, String> cattells16Questions = new HashMap<>();
+
     private int age;
-    private String gender;
 
-    /* Getter & Setter */
-    public Long getId() {
-        return id;
-    }
+    /**
+     * @gender :
+     * 0 = male
+     * 1 = female
+     * 2 = other
+     */
+    private int gender;
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+    private int timeElapsedInSeconds;
 
-    public String getEmail() {
-        return email;
-    }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
-    public int getAge() {
-        return age;
-    }
 
-    public void setAge(int age) {
-        this.age = age;
-    }
-
-    public String getGender() {
-        return gender;
-    }
-
-    public void setGender(String gender) {
-        this.gender = gender;
-    }
 }
