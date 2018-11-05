@@ -41,9 +41,10 @@ public class Questionnaire {
 
     /**
      * @gender :
-     * 0 = male
-     * 1 = female
-     * 2 = other
+     * 0 = missed
+     * 1 = male
+     * 2 = female
+     * 3 = other
      */
     private int gender;
 
