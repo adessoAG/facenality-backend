@@ -35,7 +35,7 @@ public class Questionnaire {
 
     @ElementCollection
     @JsonDeserialize(using = StringMapDeserializer.class)
-    private Map<String, String> cattells16Questions = new HashMap<>();
+    private Map<String, Integer> cattells16Questions = new HashMap<>();
 
     private int age;
 

@@ -11,7 +11,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-public class StringMapDeserializer extends StdDeserializer<Map<String, String>> {
+public class StringMapDeserializer extends StdDeserializer<Map<String, Integer>> {
 
     public StringMapDeserializer() {
         this(null);
@@ -22,9 +22,9 @@ public class StringMapDeserializer extends StdDeserializer<Map<String, String>> 
     }
 
     @Override
-    public Map<String, String> deserialize(JsonParser p, DeserializationContext ctxt) throws IOException, JsonProcessingException {
+    public Map<String, Integer> deserialize(JsonParser p, DeserializationContext ctxt) throws IOException, JsonProcessingException {
         ObjectMapper mapper = new ObjectMapper();
-        TypeReference<HashMap<String, String>> typeReference = new TypeReference<HashMap<String, String>>() { };
+        TypeReference<HashMap<String, Integer>> typeReference = new TypeReference<HashMap<String, Integer>>() { };
 
         return mapper.readValue(p.getText(), typeReference);
     }
