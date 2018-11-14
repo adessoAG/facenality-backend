@@ -26,10 +26,12 @@ public class QuestionnaireRestController {
         return questionnaireService.saveQuestionnaire(questionnaire).getId();
     }
 
+    /**
     @GetMapping("/get")
     public Iterable<Questionnaire> greet() {
         return questionnaireRepository.findAll();
     }
+     */
 
     @GetMapping("/get-test-average/{id}")
     public Iterable<Double> getTestAverageForId(@PathVariable("id") long id) {

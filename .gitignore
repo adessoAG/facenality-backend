@@ -27,3 +27,6 @@
 
 ### Static content ###
 /src/main/resources/static
+src/main/resources/application\.properties
+
+*.properties
