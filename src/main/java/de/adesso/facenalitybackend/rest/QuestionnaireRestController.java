@@ -5,6 +5,8 @@ import de.adesso.facenalitybackend.persistence.Questionnaire;
 import de.adesso.facenalitybackend.persistence.QuestionnaireRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.View;
+import org.springframework.web.servlet.view.InternalResourceView;
 
 
 @CrossOrigin
@@ -26,11 +28,12 @@ public class QuestionnaireRestController {
         return questionnaireService.saveQuestionnaire(questionnaire).getId();
     }
 
-
+    /**
     @GetMapping("/get")
     public Iterable<Questionnaire> greet() {
         return questionnaireRepository.findAll();
     }
+    */
 
 
     @GetMapping("/get-test-average/{id}")
@@ -42,5 +45,11 @@ public class QuestionnaireRestController {
     public String correctQuestionnaire() {
         questionnaireService.correctQuestionnaire();
         return "Corrected";
+    }
+
+    @RequestMapping(value = "{path:[^\\.]*}")
+    public View redirect() {
+        // Forward to home page so that route is preserved.
+        return new InternalResourceView("/");
     }
 }
